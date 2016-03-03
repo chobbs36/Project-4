@@ -9,9 +9,12 @@
 
 'use strict';
 
+var MealEvents = require('./meal.events');
+
 import _ from 'lodash';
 import Meal from './meal.model';
 import Restaurant from '../restaurant/restaurant.model';
+
 
 function respondWithResult(res, statusCode) {
   statusCode = statusCode || 200;
@@ -91,6 +94,7 @@ export function create(req, res) {
       price: req.body.text
     });
     restaurant.meals.push(newMeal);
+    MealEvents.emit('save', { meal: newMeal, restaurantId: restaurant._id });
     return restaurant.save();
   })
   .then(respondWithResult(res, 201))
