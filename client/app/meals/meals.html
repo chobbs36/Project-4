@@ -1,27 +1,26 @@
-<!DOCTYPE html>
-<html ng-app>
 <section class="container">
+  <h1>{{ vm.selectedRestaurant.name }}</h1>
   <div class="row">
     <article class="col-md-6">
-      <h3>Restaurants:</h3>
-      <div class="panel panel-primary channel"
-           ng-repeat="restaurant in vm.restaurants | orderBy: 'name'"
-           ng-click="vm.setSelected(restaurant)">
+      <h3>Meals:</h3>
+      <div class="panel panel-primary meal"
+           ng-repeat="meal in vm.meals | orderBy: 'name'"
+           ng-click="vm.setSelected(meal)">
         <div class="panel-heading">
           <h3 class="panel-title">
-            <span ng-show="vm.isSelected(restaurant)" class="glyphicon glyphicon-ok" aria-hidden="true"></span> {{ restaurant.name }}
+            <span ng-show="vm.isSelected(meal)" class="glyphicon glyphicon-ok" aria-hidden="true"></span> {{ meal.name }}
           </h3>
         </div>
         <div class="panel-body">
           <dl class="dl-horizontal">
-            <dt>Address:</dt><dd>{{ restaurant.location }}</dd>
-            <dt>Cuisine:</dt><dd>{{ restaurant.cuisine }}</dd>
+            <dt>Description</dt><dd>{{ meal.description }}</dd>
+            <dt>Price</dt><dd>{{ meal.price }}</dd>
           </dl>
         </div>
       </div>
     </article>
     <article class="col-md-6" style="height: 400px; overflow-y: scroll;">
-      <h3>{{ vm.selectedRestaurant.name }}</h3><h5>{{ vm.selectedRestaurant.location }}</h5>
+      <h3>{{ vm.selectedMeal.name }}</h3>
       <form>
         <textarea class="form-control"
                   rows="3"
@@ -33,13 +32,12 @@
         <button type="submit" class="btn btn-primary" ng-click="vm.postMeal()">Post</button>
       </form>
       <hr>
-      <div class="animate-meals" ng-repeat="meal in vm.selectedRestaurant.meals | orderBy: '-name'">
+      <div class="animate-meals" ng-repeat="meal in vm.selectedRestaurant.meals | orderBy: '-createdAt'">
         <dl>
           <dt><span class="text-primary"><strong>{{ meal.name }}<strong></span></dt>
-          <dd><div class="well" style="white-space: pre-wrap; padding: 9px;">{{ meal.description }} {{ meal.price }}</div></dd>
+          <dd><div class="well" style="white-space: pre-wrap; padding: 9px;">{{ meal.description }}</div></dd>
         </dl>
       </div>
     </article>
   </div>
 </section>
-</html>
