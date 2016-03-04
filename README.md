@@ -3,6 +3,8 @@
 
 This project was generated with the [Angular Full-Stack Generator](https://github.com/DaftMonk/generator-angular-fullstack) version 3.3.0.
 
+eatUp! is a social app that allows users to view what other diners have rated food items on the menu. It also gives users the ability to rate the food items.
+
 ## Technology Stack
 
 THE MEAN STACK
