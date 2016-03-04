@@ -42,7 +42,7 @@
         </span></dt>
         <dd><div class="well" style="white-space: pre-wrap; padding: 9px;">{{ meal.description }} {{ meal.price | currency }}</div></dd>
        <div class="newRating">
-        <rating id="newRating" ng-model="newRating" max="5" readonly="false" on-hover="hoveringOver(value)"></rating><br>
+        <rating id="newRating" ng-model="meal.rating" max="5" readonly="false" on-hover="hoveringOver(value)"></rating><br>
         <button type="submit" class="btn btn-primary" ng-click="vm.rateMeal()">Rate</button>
       </div>
       </dl>
