@@ -37,8 +37,14 @@
     <hr>
     <div class="animate-meals" ng-repeat="meal in vm.selectedRestaurant.meals | orderBy: '-name'">
       <dl>
-        <dt><span class="text-primary"><strong>{{ meal.name }}<strong><rating id="currentRating" ng-model="currentRating" max="5" readonly="true" on-hover="hoveringOver(value)"></rating></span></dt>
+        <dt><span class="text-primary"><strong>{{ meal.name }}<strong>
+          <rating id="currentRating" ng-model="meal.rating" max="5" readonly="true" value="{{ meal.rating }} "on-hover="hoveringOver(value)"></rating>
+        </span></dt>
         <dd><div class="well" style="white-space: pre-wrap; padding: 9px;">{{ meal.description }} {{ meal.price | currency }}</div></dd>
+       <div class="newRating">
+        <rating id="newRating" ng-model="newRating" max="5" readonly="false" on-hover="hoveringOver(value)"></rating><br>
+        <button type="submit" class="btn btn-primary" ng-click="vm.rateMeal()">Rate</button>
+      </div>
       </dl>
     </div>
   </article>

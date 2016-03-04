@@ -1,10 +1,16 @@
-/* .ng-scope {
-  background: url('../assets/images/healthfitnessrevolution.jpg') no-repeat center center fixed;
-  -webkit-background-size: cover;
-  -moz-background-size: cover;
-  -o-background-size: cover;
-  background-size: cover;
-} */
+.bg-container {
+  margin: auto;
+  background: $brand-primary;
+  width: 1300px;
+  height: 1300px;
+  padding: 0;
+}
+
+.bg-container h1 {
+  color: white;
+  text-align: center;
+  vertical-align: center;
+}
 
 .navbar-text {
   margin-left: 15px;

@@ -6,6 +6,7 @@ var MealSchema = new mongoose.Schema({
   name: String,
   description: String,
   price: Number,
+  rating: Number,
   restaurantId: mongoose.Schema.ObjectId
 });
 

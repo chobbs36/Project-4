@@ -4,6 +4,10 @@
   cursor: hand;
 }
 
+#newRating {
+  margin: auto;
+  width: 80%;
+}
 .animate-meals {
   &.ng-enter {
     animation: fadeInRight 0.3s;

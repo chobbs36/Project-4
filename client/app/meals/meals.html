@@ -7,31 +7,31 @@
       <form>
         <div class="dropdown">
           <label for="restaurantName" id="col-md-6 col-md-offset-3">Select Restaurant:</label>
-          <select name="restaurants" ng-model="vm.selectRestaurant">
-            <option ng-repeat="restaurant in vm.restaurants" value="{{ restaurant.id }}"> {{ restaurant.name }}</option>
+          <select name="restaurants" ng-model="vm.selectedRestaurantId">
+            <option ng-repeat="restaurant in vm.restaurants" value="{{ restaurant._id }}"> {{ restaurant.name }}</option>
           </select><br><br>
         </div>
         <textarea class="form-control"
                   rows="1"
-                  ng-model="vm.newMeal"
+                  ng-model="vm.newMeal.name"
                   tabindex="1"
                   placeholder="Menu Item">
         </textarea><br>
         <textarea class="form-control"
                   rows="2"
-                  ng-model="vm.newMealDescription"
+                  ng-model="vm.newMeal.description"
                   tabindex="1"
                   placeholder="Item Description">
         </textarea><br>
         <textarea class="form-control"
                   rows="1"
-                  ng-model="vm.newMealPrice" | currency
+                  ng-model="vm.newMeal.price" | currency
                   tabindex="1"
                   placeholder="Price">
         </textarea>
       <div class="rating">
         <h4>Rate It!</h4>
-        <rating id="newRating" ng-model="newRating" max="5" readonly="false" on-hover="hoveringOver(value)"></rating>
+        <rating id="newRating" ng-model="vm.newMeal.rating" max="5" readonly="false" on-hover="hoveringOver(value)"></rating>
       </div>
         <br>
         <button type="submit" class="btn btn-primary" ng-click="vm.postMeal()">Post</button>

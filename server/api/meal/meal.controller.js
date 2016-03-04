@@ -80,18 +80,18 @@ export function show(req, res) {
 
 // Creates a new Meal in the DB
 export function create(req, res) {
-  if (!req.user) {
-    return res.status(404).send('It looks like you aren\'t logged in, please try again.');
-  }
+  console.log('creating a new meal:', req.body);
   Restaurant.findByIdAsync(req.body.restaurantId)
   .then(function(restaurant) {
     if (!restaurant) {
+      console.log('restaurant not found.');
       return res.status(404).send('Restaurant not found.');
     }
     var newMeal = restaurant.meals.create({
-      name: req.body.text,
-      description: req.body.text,
-      price: req.body.text
+      name: req.body.newMeal.name,
+      description: req.body.newMeal.description,
+      price: Number(req.body.newMeal.price),
+      rating: Number(req.body.newMeal.rating)
     });
     restaurant.meals.push(newMeal);
     MealEvents.emit('save', { meal: newMeal, restaurantId: restaurant._id });

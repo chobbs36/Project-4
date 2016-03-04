@@ -3,7 +3,8 @@
 angular.module('foodyAppApp')
   .controller('RestaurantsCtrl', function (restaurantService, mealService, $scope, socketFactory) {
     var vm = this;
-    vm.newMeal = 'Add new meal here';
+    vm.newRestaurant = 'Add new restaurant';
+    vm.newMeal = '';
 
     var ioSocket = io('', {
       path: '/socket.io-client'
@@ -42,11 +43,34 @@ angular.module('foodyAppApp')
     return restaurant._id === vm.selectedRestaurant._id;
   };
 
-  vm.postMeal = function() {
+  vm.newMeal = function() {
     restaurantService.postMeal(vm.newMeal, vm.selectedRestaurant)
     .then(function (response) {
-      vm.newMeal = 'Add new meal here';
+      vm.newRestaurant = 'Add new restaurant';
     });
   };
+})
+
+  .directive('rating', function () {
+    return {
+        restrict: 'A',
+        template: '<ul class="rating">' +
+            '<li ng-repeat="star in stars" ng-class="star">' +
+            '\u2605' +
+            '</li>' +
+            '</ul>',
+        $scope: {
+            ratingValue: '=',
+            max: '='
+        },
+        link: function ($scope, elem, attrs) {
+            $scope.stars = [];
+            for (var i = 0; i < $scope.max; i++) {
+                $scope.stars.push({
+                    filled: i < $scope.ratingValue
+                });
+            }
+        }
+    }
 });
 

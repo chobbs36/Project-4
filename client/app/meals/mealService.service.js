@@ -14,12 +14,15 @@ angular.module('foodyAppApp')
       return promise;
     };
 
-    svc.postMeal = function(newMeal, restaurant) {
+    svc.postMeal = function(newMeal, restaurantId) {
+      console.log('restaurantService is posting newMeal with restaurantId:', restaurantId);
       return $http.post('/api/meals',
-                        { text: newMeal,
-                          restaurantId: restaurant._id
+                        { newMeal: newMeal,
+                          restaurantId: restaurantId
                         });
     };
+
+    svc.rateMeal = function()
 
     svc.findById = function(id) {
       return _.find(svc.meals, function(restaurant) {
