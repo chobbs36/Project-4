@@ -7,6 +7,7 @@
 import Thing from '../api/thing/thing.model';
 import User from '../api/user/user.model';
 import Restaurant from '../api/restaurant/restaurant.model';
+import Meal from '../api/meal/meal.model';
 
 Thing.find({}).removeAsync()
   .then(() => {

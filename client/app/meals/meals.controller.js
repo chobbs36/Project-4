@@ -1,9 +1,12 @@
 'use strict';
 
 angular.module('foodyAppApp')
-  .controller('MealsCtrl', function (mealService, restaurantService) {
+  .controller('MealsCtrl', function (mealService, restaurantService, $scope, socketFactory) {
     var vm = this;
-    vm.newMeal = 'Add new meal here.';
+    vm.newMeal = '';
+    vm.newMealDescription = '';
+    vm.newMealPrice = '';
+    vm.selectRestaurant = '';
 
     mealService.getMeals().then(function(response) {
       vm.meals = response.data;
@@ -22,7 +25,7 @@ angular.module('foodyAppApp')
     vm.postMeal = function() {
       restaurantService.postMeal(vm.newMeal, vm.selectedRestaurant)
       .then(function(response) {
-        vm.newMeal = 'Add new meal here';
+        vm.newMeal = 'Menu Item';
       });
     };
   });

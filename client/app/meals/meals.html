@@ -1,33 +1,38 @@
+
+
 <section class="container">
-  <h1>{{ vm.selectedRestaurant.name }}</h1>
   <div class="row">
-    <article class="col-md-6">
-      <h3>Meals:</h3>
-      <div class="panel panel-primary meal"
-           ng-repeat="meal in vm.meals | orderBy: 'name'"
-           ng-click="vm.setSelected(meal)">
-        <div class="panel-heading">
-          <h3 class="panel-title">
-            <span ng-show="vm.isSelected(meal)" class="glyphicon glyphicon-ok" aria-hidden="true"></span> {{ meal.name }}
-          </h3>
-        </div>
-        <div class="panel-body">
-          <dl class="dl-horizontal">
-            <dt>Description</dt><dd>{{ meal.description }}</dd>
-            <dt>Price</dt><dd>{{ meal.price }}</dd>
-          </dl>
-        </div>
-      </div>
-    </article>
-    <article class="col-md-6" style="height: 400px; overflow-y: scroll;">
-      <h3>{{ vm.selectedMeal.name }}</h3>
+    <h3>Add a New Meal:</h3>
+    <article class="col-md-6 col-md-offset-3" style="height: 400px; overflow-y: scroll;"><br>
       <form>
+        <div class="dropdown">
+          <label for="restaurantName" id="col-md-6 col-md-offset-3">Select Restaurant:</label>
+          <select name="restaurants" ng-model="vm.selectRestaurant">
+            <option ng-repeat="restaurant in vm.restaurants" value="{{ restaurant.id }}"> {{ restaurant.name }}</option>
+          </select><br><br>
+        </div>
         <textarea class="form-control"
-                  rows="3"
+                  rows="1"
                   ng-model="vm.newMeal"
                   tabindex="1"
-                  onfocus="if (this.value=='Add new meal here') this.value = ''">
+                  placeholder="Menu Item">
+        </textarea><br>
+        <textarea class="form-control"
+                  rows="2"
+                  ng-model="vm.newMealDescription"
+                  tabindex="1"
+                  placeholder="Item Description">
+        </textarea><br>
+        <textarea class="form-control"
+                  rows="1"
+                  ng-model="vm.newMealPrice" | currency
+                  tabindex="1"
+                  placeholder="Price">
         </textarea>
+      <div class="rating">
+        <h4>Rate It!</h4>
+        <rating id="newRating" ng-model="newRating" max="5" readonly="false" on-hover="hoveringOver(value)"></rating>
+      </div>
         <br>
         <button type="submit" class="btn btn-primary" ng-click="vm.postMeal()">Post</button>
       </form>
